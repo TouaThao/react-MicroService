@@ -1,4 +1,4 @@
-const express = require("express ");
+const express = require("express");
 const bodyParser = require("body-parser");
 const { randomBytes } = require("crypto");
 
@@ -10,10 +10,9 @@ app.get("/posts/:id/comments", (req, res) => {
     res.send(commentByPostId[req.params.id] || [])
 });
 app.post("/posts/:id/comments", (req, res) => {
-  const commentId = randomBytes(4).toString("hex");
-
+  const commentId = randomBytes(4).toString('hex')
   //This is the content of the request
-  const content = req.body;
+  const { content } = req.body;
   //
   const comments = commentByPostId[req.params.id] || [];
   comments.push({ id: commentId, content });
@@ -25,3 +24,4 @@ app.post("/posts/:id/comments", (req, res) => {
 app.listen(4001, () => {
   console.log("we're listening on port 4001");
 });
+
